@@ -25,6 +25,9 @@ export class Componente11Component {
 //Vetorr
   vetor:Pessoa[] = [];
 
+//Armazenar indice da pessoa selecionada
+  indice:number = -1;
+
 //Função de cadastro
   cadastrar(){
 
@@ -38,4 +41,59 @@ export class Componente11Component {
     //console.table(this.vetor);
 
   }
+
+  //Função de seleção
+  selecionar(indice:number){
+
+    //Atrirbuir o indice da pessoa
+    this.indice = indice;
+
+    //Atribuir os dados da pessoa no formulário
+    this.formulario.setValue({
+      nome : this.vetor[indice].nome,
+      idade : this.vetor[indice].idade,
+      cidade : this.vetor[indice].cidade
+    });
+
+  //Visibilidade dos botões
+    this.btnCadastrar = false
+
+  }
+
+  //Função de alteração
+  alterar(){
+
+    //Alterar vetor
+    this.vetor[this.indice] = this.formulario.value as Pessoa;
+
+    //Limpar os inputs
+    this.formulario.reset();
+
+    //Visibilidade dos botões
+    this.btnCadastrar = true;
+  }
+
+  //Função de remoção
+  remover(){
+
+    //Removerr pessoa do vetor
+    this.vetor.splice(this.indice, 1);
+    
+    //Limpeza dos inputs
+    this.formulario.reset();
+
+    //Visibilidade dos botões
+    this.btnCadastrar = true;
+  }
+  //Função de cancelamento
+  cancelar(){
+  
+    //Limpeza dos inputs
+    this.formulario.reset();
+
+    //Visibilidade dos botoões
+    this.btnCadastrar = true;
+  }
+
+
 }
