@@ -12,4 +12,5 @@ export class Componente09Component {
 
   //Modelar formulário
   nome:string = '';
+  cidade:string = '';
 }
